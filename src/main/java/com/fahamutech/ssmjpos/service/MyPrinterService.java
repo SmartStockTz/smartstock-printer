@@ -54,7 +54,7 @@ public class MyPrinterService implements Printable {
     public void printString(String printerName, String text) {
 
         // find the printService of name printerName
-        System.out.println("start");
+        // System.out.println("start");
         DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
         DocPrintJob job = outI(printerName, flavor);
 
@@ -100,7 +100,7 @@ public class MyPrinterService implements Printable {
         PrintService[] printService = PrintServiceLookup.lookupPrintServices(
                 flavor, pras);
         // PrintService service = findPrintService(printerName, printService);
-        System.out.println(printService1.getName());
+       // System.out.println(printService1.getName());
         return printService1.createPrintJob();
     }
 
