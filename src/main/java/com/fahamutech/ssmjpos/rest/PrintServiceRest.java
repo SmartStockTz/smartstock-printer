@@ -1,12 +1,19 @@
 package com.fahamutech.ssmjpos.rest;
 
 import com.fahamutech.ssmjpos.service.MyPrinterService;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class PrintServiceRest {
     private MyPrinterService myPrinterService;
 
@@ -15,9 +22,9 @@ public class PrintServiceRest {
     }
 
     @RequestMapping("/print")
-    public String print(HttpServletRequest request) {
-        String data = request.getParameter("data");
-        String id = request.getParameter("id");
+    public String print(@RequestBody Map<String, Object> printData) {
+        String data = (String)printData.get("data");
+        String id = (String)printData.get("id");
         String header =
                 "          #" + id + "\n" +
                 "           Lb Pharmacy Ltd     \n" +
@@ -39,6 +46,7 @@ public class PrintServiceRest {
         // cut that paper!
         byte[] cutP = new byte[]{0x1d, 'V', 1};
         myPrinterService.printBytes("TM-T20II", cutP);
-        return data;
+        // System.out.println(printData);
+        return "done print";
     }
 }
