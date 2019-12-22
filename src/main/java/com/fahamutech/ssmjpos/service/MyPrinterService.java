@@ -16,18 +16,13 @@ import java.util.List;
 public class MyPrinterService implements Printable {
 
     public List<String> getPrinters() {
-
         DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
         PrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();
-
-        PrintService printServices[] = PrintServiceLookup.lookupPrintServices(
-                flavor, pras);
-
+        PrintService[] printServices = PrintServiceLookup.lookupPrintServices(flavor, pras);
         List<String> printerList = new ArrayList<String>();
         for (PrintService printerService : printServices) {
             printerList.add(printerService.getName());
         }
-
         return printerList;
     }
 
@@ -51,7 +46,7 @@ public class MyPrinterService implements Printable {
         return PAGE_EXISTS;
     }
 
-    public void printString(String printerName, String text) {
+    public boolean printString(String printerName, String text) {
 
         // find the printService of name printerName
         // System.out.println("start");
@@ -59,20 +54,18 @@ public class MyPrinterService implements Printable {
         DocPrintJob job = outI(printerName, flavor);
 
         try {
-
             byte[] bytes;
-
             // important for umlaut chars
             bytes = text.getBytes("CP437");
-
             Doc doc = new SimpleDoc(bytes, flavor, null);
-
-
             job.print(doc, null);
-
+            // cut that paper!
+            byte[] cutP = new byte[]{0x1d, 'V', 1};
+            printBytes(printerName, cutP);
+            return true;
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            return false;
         }
 
     }
@@ -80,28 +73,26 @@ public class MyPrinterService implements Printable {
     public void printBytes(String printerName, byte[] bytes) {
         DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
         DocPrintJob job = outI(printerName, flavor);
-
         try {
-
             Doc doc = new SimpleDoc(bytes, flavor, null);
-
             job.print(doc, null);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private DocPrintJob outI(String printerName, DocFlavor flavor) {
-        PrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();
-
-        PrintService printService1 = PrintServiceLookup.lookupDefaultPrintService();
-
+        PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
+        // PrintService printService1 = PrintServiceLookup.lookupDefaultPrintService();
         PrintService[] printService = PrintServiceLookup.lookupPrintServices(
-                flavor, pras);
-        // PrintService service = findPrintService(printerName, printService);
-       // System.out.println(printService1.getName());
-        return printService1.createPrintJob();
+                flavor, printRequestAttributeSet);
+        PrintService service = findPrintService(printerName, printService);
+        // System.out.println(service.getName());
+        if (service != null) {
+            return service.createPrintJob();
+        } else {
+            return null;
+        }
     }
 
     private PrintService findPrintService(String printerName,
