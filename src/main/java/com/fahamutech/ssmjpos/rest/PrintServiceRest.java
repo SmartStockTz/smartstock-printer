@@ -31,31 +31,14 @@ public class PrintServiceRest {
     public ResponseEntity<String> print(@RequestBody Map<String, Object> printData) {
         String data = (String) printData.get("data");
         String id = (String) printData.get("id");
-        String header =
-                "          #" + id + "\n" +
-                        "           Lb Pharmacy Ltd     \n" +
-                        "       Gongo La Mboto Stand\n" +
-                        "           P.O.Box 41593\n" +
-                        "      number: +255717959146\n" +
-                        data;
+        data = "#" + id + "\n\n" + data;
 
-        String footer =
-                "\n" +
-                        "***********************************\n" +
-                        "Kusoma oda piga \n" +
-                        "1. 0684972687\n" +
-                        "2. 0714702887\n" +
-                        "3. 0768316283\n\n" +
-                        "***************************************\n\n\n\n\n\n";
-        String concat = header.concat(footer);
-        boolean done = myPrinterService.printString("TM-T20II", concat);
+        boolean done = myPrinterService.printString("TM-T20II", data);
         if (done) {
             return new ResponseEntity<String>("done print", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Fails to print", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-//        // System.out.println(printData);
-//        return "done print";
     }
 
 }
