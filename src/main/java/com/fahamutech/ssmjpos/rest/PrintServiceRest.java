@@ -31,7 +31,7 @@ public class PrintServiceRest {
     public ResponseEntity<String> print(@RequestBody Map<String, Object> printData) {
         String data = (String) printData.get("data");
         String id = (String) printData.get("id");
-        data = "#" + id + "\n\n" + data;
+        data = "#" + id + "\n\n" + data + "\n\n\n";
 
         boolean done = myPrinterService.printString("TM-T20II", data);
         if (done) {
