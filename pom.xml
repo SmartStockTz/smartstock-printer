@@ -12,7 +12,7 @@
     <artifactId>ssmjavapos</artifactId>
     <version>0.1.2</version>
     <name>ssmjavapos</name>
-    <description>SmartStock printer service</description>
+    <description>SmartStock printer service </description>
 
     <properties>
         <java.version>1.8</java.version>
