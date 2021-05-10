@@ -20,6 +20,7 @@ public class SsmjposApplication {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/print").allowedOrigins("*");
+                registry.addMapping("/").allowedOrigins("*");
             }
         };
     }

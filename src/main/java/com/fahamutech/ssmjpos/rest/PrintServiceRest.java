@@ -11,6 +11,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "*")
 public class PrintServiceRest {
+    public static final String PRINTER_NAME = "TM-T20II";
     private MyPrinterService myPrinterService;
 
     PrintServiceRest(MyPrinterService myPrinterService) {
@@ -33,7 +34,7 @@ public class PrintServiceRest {
         String id = (String) printData.get("id");
         data = "#" + id + "\n\n" + data + "\n\n\n";
 
-        boolean done = myPrinterService.printString("TM-T20II", data);
+        boolean done = myPrinterService.printString(PRINTER_NAME, data);
         if (done) {
             return new ResponseEntity<String>("done print", HttpStatus.OK);
         } else {
