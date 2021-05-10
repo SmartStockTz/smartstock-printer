@@ -43,12 +43,12 @@ To install this printer service in a mac, you need to create a launchd daemon an
         </dict>
       </plist>
  
-  - Launch the service by running.
+- Launch the service by running.
     > launchctl load  ~/Library/LaunchAgents/com.smartstock.daemon.plist
   
-  NOTE: 
-  - You can stop the service by running
+NOTE: 
+ - You can stop the service by running
     >  launchctl unload  ~/Library/LaunchAgents/com.smartstock.daemon.plist
-  - Open Utilities and open an application called Console. This application allows you to view system logs as they are being executed.
+ - Open Utilities and open an application called Console. This application allows you to view system logs as they are being executed.
 
     
