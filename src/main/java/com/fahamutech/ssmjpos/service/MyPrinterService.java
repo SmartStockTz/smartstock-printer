@@ -54,10 +54,10 @@ public class MyPrinterService implements Printable {
         DocPrintJob job = outI(printerName, flavor);
 
         try {
-            byte[] bytes;
+            byte[] text2bytes;
             // important for umlaut chars
-            bytes = text.getBytes("CP437");
-            Doc doc = new SimpleDoc(bytes, flavor, null);
+            text2bytes = text.getBytes("CP437");
+            Doc doc = new SimpleDoc(text2bytes, flavor, null);
             assert job != null;
             job.print(doc, null);
             // cut that paper!
