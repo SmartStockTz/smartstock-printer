@@ -33,7 +33,7 @@ public class PrintServiceRest {
         String printer = (String) printData.get("printer");
         data = "#" + id + "\n\n" + data + "\n\n\n";
         // "TM-T20II"
-        boolean done = myPrinterService.printString(printer != null ? printer : "TM-T20II", data);
+        boolean done = myPrinterService.printString(printer != null && !printer.trim().equals("") ? printer : "TM-T20II", data);
         if (done) {
             return new ResponseEntity<>("done print", HttpStatus.OK);
         }

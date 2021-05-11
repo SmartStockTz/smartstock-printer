@@ -45,10 +45,46 @@ To install this printer service in a mac, you need to create a launchd daemon an
  
 - Launch the service by running.
     > launchctl load  ~/Library/LaunchAgents/com.smartstock.daemon.plist
-  
+
+
 NOTE: 
  - You can stop the service by running
     >  launchctl unload  ~/Library/LaunchAgents/com.smartstock.daemon.plist
  - Open Utilities and open an application called Console. This application allows you to view system logs as they are being executed.
 
-    
+
+## Linux - Systemd Based
+
+--------------------------------------------
+
+# API
+
+Printer server run on port `8080` so make sure that port is open.
+
+
+## GET / 
+return list of printers
+
+```shell
+curl https://localhost:8080/ -k
+```
+
+return array like this `["HP-LaserJet-P2015-Series","TM-T20II"]`
+
+## POST /printer
+
+send data to print
+
+```shell
+curl --request POST -skL \
+     --url 'https://localhost:8080/print'\
+     --header 'Content-Type:application/json'
+     --data '{"printer": "TM-T20II", "data": "Data to print", "id": "2342}'
+```
+
+Parameters for body data
+
+|name|Detail|Default|
+|----|------|--------|
+|printer| name of printer to use | 'TM-T20II'|
+|data| 

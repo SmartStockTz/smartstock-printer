@@ -53,7 +53,7 @@ public class MyPrinterService implements Printable {
         DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
         DocPrintJob job = outI(printerName, flavor);
 
-        System.out.println(text);
+//        System.out.println(text);
         try {
             byte[] text2bytes;
             // important for umlaut chars
@@ -102,7 +102,7 @@ public class MyPrinterService implements Printable {
     private PrintService findPrintService(String printerName,
                                           PrintService[] services) {
         for (PrintService service : services) {
-            System.out.println(service.getName());
+//            System.out.println(service.getName());
             if (service.getName().equalsIgnoreCase(printerName)) {
                 return service;
             }
