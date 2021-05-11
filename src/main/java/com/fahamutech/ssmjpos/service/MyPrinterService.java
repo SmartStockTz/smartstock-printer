@@ -58,6 +58,7 @@ public class MyPrinterService implements Printable {
             // important for umlaut chars
             bytes = text.getBytes("CP437");
             Doc doc = new SimpleDoc(bytes, flavor, null);
+            assert job != null;
             job.print(doc, null);
             // cut that paper!
             byte[] cutP = new byte[]{0x1d, 'V', 1};
@@ -75,6 +76,7 @@ public class MyPrinterService implements Printable {
         DocPrintJob job = outI(printerName, flavor);
         try {
             Doc doc = new SimpleDoc(bytes, flavor, null);
+            assert job != null;
             job.print(doc, null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,11 +100,11 @@ public class MyPrinterService implements Printable {
     private PrintService findPrintService(String printerName,
                                           PrintService[] services) {
         for (PrintService service : services) {
+            System.out.println(service.getName());
             if (service.getName().equalsIgnoreCase(printerName)) {
                 return service;
             }
         }
-
         return null;
     }
 }

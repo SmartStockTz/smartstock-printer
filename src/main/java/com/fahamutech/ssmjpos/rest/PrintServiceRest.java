@@ -11,7 +11,7 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "*")
 public class PrintServiceRest {
-    private MyPrinterService myPrinterService;
+    private final MyPrinterService myPrinterService;
 
     PrintServiceRest(MyPrinterService myPrinterService) {
         this.myPrinterService = myPrinterService;
@@ -21,24 +21,23 @@ public class PrintServiceRest {
     public ResponseEntity<List<String>> getPrinters() {
         List<String> printers = myPrinterService.getPrinters();
         if (printers != null) {
-            return new ResponseEntity<List<String>>(printers, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(printers, HttpStatus.OK);
         }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/print")
     public ResponseEntity<String> print(@RequestBody Map<String, Object> printData) {
         String data = (String) printData.get("data");
         String id = (String) printData.get("id");
+        String printer = (String) printData.get("printer");
         data = "#" + id + "\n\n" + data + "\n\n\n";
-
-        boolean done = myPrinterService.printString("TM-T20II", data);
+        // "TM-T20II"
+        boolean done = myPrinterService.printString(printer != null ? printer : "TM-T20II", data);
         if (done) {
-            return new ResponseEntity<String>("done print", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Fails to print", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("done print", HttpStatus.OK);
         }
+        return new ResponseEntity<>("Fails to print", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
