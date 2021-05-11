@@ -1,0 +1,31 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.1.RELEASE)
+
+2021-05-10 16:33:18.582  INFO 6702 --- [           main] c.fahamutech.ssmjpos.SsmjposApplication  : Starting SsmjposApplication v0.1.2 on Elias-MacBook-Pro-1022.local with PID 6702 (/Users/Shared/ssmjavapos-0.1.2.jar started by elia in /)
+2021-05-10 16:33:18.586  INFO 6702 --- [           main] c.fahamutech.ssmjpos.SsmjposApplication  : No active profile set, falling back to default profiles: default
+2021-05-10 16:33:20.009  INFO 6702 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (https)
+2021-05-10 16:33:20.032  INFO 6702 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-05-10 16:33:20.033  INFO 6702 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.13
+2021-05-10 16:33:20.045  INFO 6702 --- [           main] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/elia/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2021-05-10 16:33:20.130  INFO 6702 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-05-10 16:33:20.130  INFO 6702 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1489 ms
+2021-05-10 16:33:20.396  INFO 6702 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-10 16:33:21.137  INFO 6702 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (https) with context path ''
+2021-05-10 16:33:21.141  INFO 6702 --- [           main] c.fahamutech.ssmjpos.SsmjposApplication  : Started SsmjposApplication in 3.194 seconds (JVM running for 3.655)
+2021-05-10 16:35:00.210  INFO 6702 --- [nio-8080-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-10 16:35:00.211  INFO 6702 --- [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-05-10 16:35:00.219  INFO 6702 --- [nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+#tm20
+
+tests
+
+
+
+java.lang.NullPointerException
+2021-05-10 16:37:47.844  INFO 6702 --- [       Thread-2] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

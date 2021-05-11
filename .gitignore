@@ -24,3 +24,5 @@
 /nbdist/
 /.nb-gradle/
 .vscode
+stderr.log
+stdout.log

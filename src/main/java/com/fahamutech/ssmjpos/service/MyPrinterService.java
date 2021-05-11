@@ -53,6 +53,7 @@ public class MyPrinterService implements Printable {
         DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
         DocPrintJob job = outI(printerName, flavor);
 
+        System.out.println(text);
         try {
             byte[] text2bytes;
             // important for umlaut chars
@@ -66,6 +67,7 @@ public class MyPrinterService implements Printable {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println(e);
             return false;
         }
 
